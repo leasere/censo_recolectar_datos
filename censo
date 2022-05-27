@@ -1,0 +1,88 @@
+# =====================  Censo  =========================
+# Programa para recolectar datos y elaborarlos
+# =======================================================
+
+# Variables totales:
+# totalCant: total de personas censadas
+# totalMenores: total personas menores de 18 años
+# totalVehic: total vehiculos
+# totalIng: ingreso total mensual familiar
+# hogares: cantidad de hogares censados
+# masVieja: persona mas vieja censada
+# masJoven: persona mas joven censada
+
+# Variables individuales:
+# cant: cantidad de integrantes en la familia
+# cantMenores: cantidad de menores de 18 años
+# vieja: edad de la persona mas vieja
+# joven: edad de la persona mas joven
+# vehic: si tiene o no vehiculos
+# cantVehic: cantidad de vehiculos
+# salario: ingreso salarial mensual de la familia
+
+# =====  Inicializacion de variables totales  ======
+totalCant = 0
+totalMenores = 0
+totalVehic = 0
+totalIng = 0
+hogares = 0
+masVieja = 0
+masJoven = 0
+
+# ======  Procesamiento de datos de un hogar  ======
+#a
+cant = int(input(" Ingrese cantidad de integrantes en la familia: "))
+
+while (cant > 0):
+
+    #b
+    cantMenores = int(input(" Ingrese cantidad de menores de 18 años en la familia: "))
+    while (cantMenores > cant):
+        print ("El dato ingresado es invalido")
+        cantMenores = int(input(" Ingrese cantidad de menores de 18 años en la familia: "))
+    else:
+        totalMenores = totalMenores + cantMenores
+    
+    #c
+    if (cant != 1):
+        vieja = int(input(" Ingrese edad de la persona mas vieja en la familia: "))
+        joven = int(input(" Ingrese edad de la persona mas joven en la familia: "))
+        if (vieja > masVieja):
+            masVieja = vieja
+        if (joven > masJoven):
+            masJoven = joven
+    else:
+        vieja = int(input(" Ingrese edad de la persona: "))
+        joven = vieja
+    
+    #d
+    salario = int(input(" Ingrese salario mensual familiar: "))
+    totalIng = totalIng + salario
+    
+    #e
+    vehic = input(" Tiene vehiculo? (s/n): ")
+    while ((vehic != "s") and (vehic != "n")):
+        print ("El dato ingresado es invalido")
+        vehic = input(" Tiene vehiculo? (s/n): ")
+    
+    #cantVehic = 0
+    if (vehic == "s"):
+        cantVehic = int(input(" Ingrese cantidad de vehiculos familiares: "))
+        totalVehic = totalVehic + cantVehic
+    
+    #a
+    totalCant = totalCant + cant
+    cant = int(input(" Ingrese cantidad de integrantes en la familia: "))
+    hogares = hogares + 1
+
+else:
+    print ("\nFin del censo\n")
+    print ("Datos recolectados: ")
+    print (str(totalCant) + " personas censadas")
+    print (str(totalCant / hogares) + " promedio de habitantes por hogar censados")
+    print (str(totalMenores * 100 / totalCant) + "% de menores censados")
+    print (str(masVieja) + " años tiene la persona mas vieja censada")
+    print (str(masJoven) + " años tiene la persona mas joven censada")
+    print (str(totalIng / hogares) + " promedio ingreso familiar de hogares censados")
+    print (str(totalVehic) + " vehiculos censados")
+    print (str(totalVehic * 100 / hogares) + "% de vehiculos por familia censados")
